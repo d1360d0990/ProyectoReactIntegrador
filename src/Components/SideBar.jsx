@@ -13,17 +13,20 @@ import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import LogoutIcon from '@mui/icons-material/Logout';
 import FallbackAvatars from './Avatar';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { useNavigate } from 'react-router-dom';
 
 
 
 export const SideBar = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  const handleListItemClick = (event, index) => {
+  const navigate = useNavigate();
+
+  const handleListItemClick = (event, index, path) => {
     setSelectedIndex(index);
-  };
+    navigate(path);
 
-
+  }
 
   return (
     <div className="sidebar">
@@ -36,7 +39,7 @@ export const SideBar = () => {
         <List component="nav" aria-label="main mailbox folders">
           <ListItemButton
             selected={selectedIndex === 0}
-            onClick={(event) => handleListItemClick(event, 0)}
+            onClick={(event) => handleListItemClick(event, 0,'/eventos')}
           >
             <ListItemIcon>
               <CelebrationIcon sx={{ color: 'white' }} />
@@ -44,8 +47,8 @@ export const SideBar = () => {
             <ListItemText primary="Eventos" />
           </ListItemButton>
           <ListItemButton
-            selected={selectedIndex === 0}
-            onClick={(event) => handleListItemClick(event, 0)}
+            selected={selectedIndex === 1}
+            onClick={(event) => handleListItemClick(event, 1, '/calendario')}
           >
             <ListItemIcon>
               <CalendarMonthIcon sx={{ color: 'white' }} />
@@ -54,8 +57,8 @@ export const SideBar = () => {
           </ListItemButton>
           <Divider />
           <ListItemButton
-            selected={selectedIndex === 0}
-            onClick={(event) => handleListItemClick(event, 0)}
+            selected={selectedIndex === 2}
+            onClick={(event) => handleListItemClick(event, 2, '/ubicacion')}
           >
             <ListItemIcon>
               <LocationOnIcon sx={{ color: 'white' }} />
@@ -64,8 +67,8 @@ export const SideBar = () => {
             <ListItemText primary="Ubicación" />
           </ListItemButton>
           <ListItemButton
-            selected={selectedIndex === 0}
-            onClick={(event) => handleListItemClick(event, 0)}
+            selected={selectedIndex === 3}
+            onClick={(event) => handleListItemClick(event, 3, '/search')}
           >
             <ListItemIcon>
               <SearchIcon sx={{ color: 'white' }} />
@@ -74,8 +77,8 @@ export const SideBar = () => {
           </ListItemButton>
           <Divider />
           <ListItemButton
-            selected={selectedIndex === 0}
-            onClick={(event) => handleListItemClick(event, 0)}
+            selected={selectedIndex === 4}
+            onClick={(event) => handleListItemClick(event, 4, '/finanzas')}
           >
             <ListItemIcon>
               <AccountBalanceIcon sx={{ color: 'white' }} />
@@ -83,8 +86,8 @@ export const SideBar = () => {
             <ListItemText primary="Finanzas" />
           </ListItemButton>
           <ListItemButton
-            selected={selectedIndex === 0}
-            onClick={(event) => handleListItemClick(event, 0)}
+            selected={selectedIndex === 5}
+            onClick={(event) => handleListItemClick(event, 5, '/administracion')}
           >
             <ListItemIcon>
               <SupervisorAccountIcon sx={{ color: 'white' }} />

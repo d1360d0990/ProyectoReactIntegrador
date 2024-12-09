@@ -10,7 +10,8 @@ import Button from '@mui/material/Button';
 import PrintIcon from '@mui/icons-material/Print';
 import StickyHeadTable from '../StickyHeader';
 import { OutlinedInput } from '@mui/material'
-
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const NAVIGATION = [
     {
@@ -42,6 +43,9 @@ const Skeleton = styled('div')(({ theme, height }) => ({
 }));
 
 function PageToolbar() {
+
+
+
     return (
         <PageContainerToolbar>
             <Stack direction="row" spacing={1} alignItems="center">
@@ -59,11 +63,19 @@ function PageToolbar() {
 }
 
 export default function PageContainerBasic(props) {
+    const [inputValue, setInputValue] = useState('');
+    const navigate = useNavigate();
+    const handleClear = () => {
+        setInputValue('');
+    }
     const { window } = props;
     const router = useDemoRouter('/orders');
     const theme = useTheme();
     // Remove this const when copying and pasting into your project.
     const demoWindow = window ? window() : undefined;
+    const handleCreateEventClick = () => {
+        navigate('/addEvent');
+    }
 
     return (
         <AppProvider
@@ -84,28 +96,21 @@ export default function PageContainerBasic(props) {
                     <Grid container spacing={1}>
                         <Grid size={5} />
                         <Grid size={12}>
-                            <Skeleton height={14} />
-                        </Grid>
-                        <Grid size={12}>
                             <OutlinedInput
                                 placeholder="Buscar Evento"
                                 inputProps={{ 'aria-label': 'search' }} sx={{ width: '60%' }}
+                                value={inputValue}
+                                onChange={(e) => setInputValue(e.target.value)}
                             />
-                            <Button variant="contained" color="success" sx={{ margin: '5px' }}>
+                            <Button onClick={handleClear} variant="contained" color="success" sx={{ margin: '5px' }}>
                                 LIMPIAR SELECCION
                             </Button>
-                            <Button variant="contained">CREAR EVENTO</Button>
-                        </Grid>
-                        <Grid sx={{width: '100%'}}>
-                        <OutlinedInput
-              placeholder="Busqueda Avanzada"
-              inputProps={{ 'aria-label': 'search' }} sx={{display: 'flex', justifyContent: 'start',width: '100%'}}
-            />
+                            <Button onClick={handleCreateEventClick} variant="contained" color="primary" sx={{ margin: '5px' }}>CREAR EVENTO</Button>
                         </Grid>
                         <Grid size={12}>
                             <StickyHeadTable />
                         </Grid>
-                        
+
                     </Grid>
                 </PageContainer>
             </Paper>
