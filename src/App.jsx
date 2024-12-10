@@ -8,12 +8,14 @@ import { Search } from './Routes/Search';
 import { Finanzas } from './Routes/Finanzas';
 import { Administracion } from './Routes/Administracion';
 import { CrearEvento } from './Routes/CrearEvento';
+import Login from './Components/Login/Login';
 
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Login/>} />
         <Route path="/Home" element={<Home/>} />
         <Route path="/eventos" element={<Eventos/>} />
         <Route path="/calendario" element={<Calendar/>} />

@@ -43,7 +43,9 @@ const Skeleton = styled('div')(({ theme, height }) => ({
 }));
 
 function PageToolbar() {
-
+    const handlePrint = () => {
+        window.print(); // Llama a la función de impresión del navegador
+    };
 
 
     return (
@@ -54,6 +56,7 @@ function PageToolbar() {
                     size="small"
                     color="neutral"
                     startIcon={<PrintIcon fontSize="inherit" />}
+                    onClick={handlePrint}
                 >
                     Print
                 </Button>
