@@ -45,7 +45,7 @@ export const CrearEvento = () => {
             {/* Título del Evento */}
             <Grid item xs={12}>
               <TextField
-                label="Título"
+                label="Nombre"
                 variant="outlined"
                 fullWidth
                 value={title}
@@ -64,6 +64,16 @@ export const CrearEvento = () => {
                 rows={4}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Ubicación"
+                variant="outlined"
+                fullWidth
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 required
               />
             </Grid>

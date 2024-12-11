@@ -1,6 +1,9 @@
+import EventTable from "../Components/StickyHeader"
 
 export const Eventos = () => {
   return (
-    <div>Esta es la pagina de Eventos</div>
+    <>
+    <EventTable/>
+    </>
   )
 }

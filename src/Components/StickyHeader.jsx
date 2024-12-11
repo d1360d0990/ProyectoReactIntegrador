@@ -1,123 +1,155 @@
-import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const columns = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+// Datos de ejemplo (para usarlos como fallback si la API no responde)
+const exampleEvents = [
   {
-    id: 'population',
-    label: 'Population',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
+    id: 1,
+    name: "Concierto de Rock",
+    description: "Una noche inolvidable de música rock.",
+    date: "2024-12-20",
+    place: "Auditorio Nacional",
+    participants: 500,
+    maxCapacity: 1000,
+    availableTickets: 500,
   },
   {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
+    id: 2,
+    name: "Exposición de Arte",
+    description: "Arte contemporáneo de artistas locales.",
+    date: "2024-12-22",
+    place: "Centro Cultural",
+    participants: 200,
+    maxCapacity: 300,
+    availableTickets: 100,
   },
   {
-    id: 'density',
-    label: 'Density',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
+    id: 3,
+    name: "Festival de Comida",
+    description: "Disfruta una variedad de platillos internacionales.",
+    date: "2024-12-25",
+    place: "Parque Central",
+    participants: 300,
+    maxCapacity: 500,
+    availableTickets: 200,
   },
+  {
+    id: 4,
+    name: "Carrera 5K",
+    description: "Participa en nuestra carrera anual de 5 kilómetros.",
+    date: "2024-12-28",
+    place: "Estadio Municipal",
+    participants: 150,
+    maxCapacity: 300,
+    availableTickets: 150,
+  },
+  {
+    id: 5,
+    name: "Taller de Fotografía",
+    description: "Aprende los conceptos básicos de fotografía.",
+    date: "2024-12-30",
+    place: "Escuela de Arte",
+    participants: 50,
+    maxCapacity: 100,
+    availableTickets: 50,
+  },
+  {
+    id: 6,
+    name: "Conferencia de Tecnología",
+    description: "Descubre las últimas tendencias en tecnología.",
+    date: "2025-01-02",
+    place: "Centro de Convenciones",
+    participants: 600,
+    maxCapacity: 800,
+    availableTickets: 200,
+  },
+  // Agrega más eventos aquí
 ];
 
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
-}
+const EventTable = () => {
+  const [events, setEvents] = useState([]); // Define el estado para los eventos
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 5;
 
-const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767),
-];
+  useEffect(() => { //cambio 2
+    axios
+      .get("http://localhost:4000/events")
+      .then((response) => {
+        if (Array.isArray(response.data)) {
+          setEvents(response.data);
+        } else {
+          console.error("La respuesta no es un array", response.data);
+          setEvents(exampleEvents); // Usar fallback
+        }
+      })
+      .catch((error) => {
+        console.error("Error al obtener los eventos:", error);
+        setEvents(exampleEvents); // Usar datos de ejemplo si ocurre un error
+      });
+  }, []);
+  
 
-export default function StickyHeadTable() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  // Calcular los datos para la página actual
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentRows = events.slice(indexOfFirstRow, indexOfLastRow);
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+  // Cambiar de página
+  const totalPages = Math.ceil(events.length / rowsPerPage) || 1; // cambio 1
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Paper>
+    <div>
+      <h1>Lista de Eventos</h1>
+      <table border="1" style={{ width: "100%", borderCollapse: "collapse" }}>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Fecha</th>
+            <th>Lugar</th>
+            <th>Participantes</th>
+            <th>Capacidad Máxima</th>
+            <th>Entradas Disponibles</th>
+          </tr>
+        </thead>
+        <tbody>
+        {currentRows.map((event, index) => (
+  <tr key={`${event.id}-${index}`}>
+    <td>{event.name}</td>
+    <td>{event.description}</td>
+    <td>{event.date}</td>
+    <td>{event.place}</td>
+    <td>{event.participants}</td>
+    <td>{event.maxCapacity}</td>
+    <td>{event.availableTickets}</td>
+  </tr>
+))}
+        </tbody>
+      </table>
+
+      {/* Paginación */}
+      <div style={{ marginTop: "20px", textAlign: "center" }}>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => paginate(index + 1)}
+            style={{
+              margin: "0 5px",
+              padding: "5px 10px",
+              cursor: "pointer",
+              backgroundColor: currentPage === index + 1 ? "#007BFF" : "#f0f0f0",
+              color: currentPage === index + 1 ? "white" : "black",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+            }}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
+    </div>
   );
-}
+};
+
+export default EventTable;
