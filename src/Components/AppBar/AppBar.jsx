@@ -14,7 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Eventos', 'Calendario', 'Contactos'];
+const pages = ['Eventos', 'Calendario', 'Ubicación','Contacto'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -40,13 +40,16 @@ function ResponsiveAppBar() {
   const handlePageClick = (page) => {
     handleCloseNavMenu();
     if (page === 'Eventos') {
-      navigate('/eventos');
+      navigate('/events');
     }
     if (page === 'Calendario') {
-      navigate('/calendario');
+      navigate('/calendar');
     }
-    if (page === 'Contactos') {
+    if (page === 'Contacto') {
       navigate('/contact');
+    }
+    if (page === 'Ubicación') {
+      navigate('/location');
     }
     // Puedes manejar otras páginas aquí si lo necesitas
   };

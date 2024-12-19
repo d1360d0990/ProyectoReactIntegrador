@@ -12,6 +12,7 @@ import StickyHeadTable from '../DashboardCenter/StickyHeader';
 import { OutlinedInput } from '@mui/material'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import "./OrdenData.css"
 
 const NAVIGATION = [
     {
@@ -89,16 +90,17 @@ export default function PageContainerBasic(props) {
                         toolbar: PageToolbar,
                     }}
                 >
-                    <Grid container spacing={1}>
-                        <Grid size={5} />
-                        <Grid size={12}>
+                    <Grid container spacing={1} sx={{ maxWidth: '100%', width: '100%', margin: 0 }}>
+                        <Grid size={5} md={8} lg={6} />
+                        <Grid size={12} sx={{ maxWidth: '100%' , width: '100%', margin: 0 }}>
                             <OutlinedInput
                                 placeholder="Buscar Evento"
                                 inputProps={{ 'aria-label': 'search' }} sx={{ width: '60%' }}
                                 value={inputValue}
                                 onChange={(e) => setInputValue(e.target.value)}
+                                
                             />
-                            <Button onClick={handleClear} variant="contained" color="success" sx={{ margin: '5px' }}>
+                            <Button onClick={handleClear} variant="contained" color="success" sx={{ margin: '10px' }}>
                                 LIMPIAR BUSQUEDA
                             </Button>
                             <Button onClick={handleCreateEventClick} variant="contained" color="primary" sx={{ margin: '5px' }}>CREAR EVENTO</Button>

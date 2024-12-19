@@ -1,7 +1,9 @@
 .Home{
-  display: flex;
+display: flex;
+  width: 200px;
   
 }
 .medio {
     display: flex;
+    
   }

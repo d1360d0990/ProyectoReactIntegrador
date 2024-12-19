@@ -1,0 +1,44 @@
+/* Contenedor principal */
+.page-container {
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+  
+  /* Campo de búsqueda */
+  .search-input {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  /* Botones */
+  .buttons-container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .buttons-container button {
+    margin: 5px 0;
+  }
+  
+  /* Tabla */
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 16px;
+  }
+  
+  /* Responsivo para pantallas pequeñas */
+  @media (max-width: 600px) {
+    .buttons-container {
+      flex-direction: column;
+      gap: 12px;
+    }
+  
+    .search-input {
+      width: 100%;
+    }
+  }
+  

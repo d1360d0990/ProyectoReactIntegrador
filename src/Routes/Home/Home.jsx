@@ -8,13 +8,14 @@ import './Home.css'
 
 export const Home = () => {
   return (
-<>
- 
- <ResponsiveAppBar/>
-      <div className='medio'>
- <DatosRender/>
-      </div>
-</>
+    <>
+      
+        <ResponsiveAppBar />
+        <div className='medio'>
+          <DatosRender />
+        </div>
+
+    </>
 
   )
 }
