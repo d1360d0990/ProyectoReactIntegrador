@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+
 // Datos de ejemplo (para usarlos como fallback si la API no responde)
 const exampleEvents = [
   {
@@ -73,7 +74,7 @@ const EventTable = () => {
 
   useEffect(() => { //cambio 2
     axios
-      .get("http://localhost:4000/events")
+    .get("https://api-ge.vercel.app/api/events")
       .then((response) => {
         if (Array.isArray(response.data)) {
           setEvents(response.data);

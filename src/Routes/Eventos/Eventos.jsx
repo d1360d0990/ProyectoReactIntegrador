@@ -1,4 +1,4 @@
-import EventTable from "../Components/StickyHeader"
+import EventTable from "../../Components/DashboardCenter/StickyHeader"
 
 export const Eventos = () => {
   return (

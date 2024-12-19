@@ -8,18 +8,20 @@ import { useState } from 'react';
 export const CrearEvento = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [location, setLocation] = useState ('')
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí agregarías la lógica para enviar el evento
-    console.log({ title, description, date, time });
+    
+    console.log({ title, description, location, date, time });
   };
 
   const handleCancel = () => {
     setTitle('');
     setDescription('');
+    setLocation ('');
     setDate(null);
     setTime(null);
   };
@@ -72,8 +74,8 @@ export const CrearEvento = () => {
                 label="Ubicación"
                 variant="outlined"
                 fullWidth
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
                 required
               />
             </Grid>

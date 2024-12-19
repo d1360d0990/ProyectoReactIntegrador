@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import {  useTheme } from '@mui/material/styles';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { PageContainer, PageContainerToolbar } from '@toolpad/core/PageContainer';
@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import PrintIcon from '@mui/icons-material/Print';
-import StickyHeadTable from '../StickyHeader';
+import StickyHeadTable from '../DashboardCenter/StickyHeader';
 import { OutlinedInput } from '@mui/material'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -34,13 +34,6 @@ function useDemoRouter(initialPath) {
 
     return router;
 }
-
-const Skeleton = styled('div')(({ theme, height }) => ({
-    backgroundColor: theme.palette.action.hover,
-    borderRadius: theme.shape.borderRadius,
-    height,
-    content: '" "',
-}));
 
 function PageToolbar() {
     const handlePrint = () => {
@@ -74,7 +67,7 @@ export default function PageContainerBasic(props) {
     const { window } = props;
     const router = useDemoRouter('/orders');
     const theme = useTheme();
-    // Remove this const when copying and pasting into your project.
+    
     const demoWindow = window ? window() : undefined;
     const handleCreateEventClick = () => {
         navigate('/addEvent');
@@ -106,7 +99,7 @@ export default function PageContainerBasic(props) {
                                 onChange={(e) => setInputValue(e.target.value)}
                             />
                             <Button onClick={handleClear} variant="contained" color="success" sx={{ margin: '5px' }}>
-                                LIMPIAR SELECCION
+                                LIMPIAR BUSQUEDA
                             </Button>
                             <Button onClick={handleCreateEventClick} variant="contained" color="primary" sx={{ margin: '5px' }}>CREAR EVENTO</Button>
                         </Grid>

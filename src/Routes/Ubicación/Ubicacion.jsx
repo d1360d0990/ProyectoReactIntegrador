@@ -4,8 +4,8 @@ import "./Ubicacion.css";
 const LocationViewer = () => {
   // Coordenadas de una ubicación específica
   const fixedLocation = {
-    latitude: 40.712776, // Latitud de Nueva York
-    longitude: -74.005974, // Longitud de Nueva York
+    latitude: -29.417578106898308, // Latitud Polo Tecnologico La Rioja
+    longitude: -66.86007057060593, // Longitud Polo Tecnologico La Rioja
   };
 
   useEffect(() => {
