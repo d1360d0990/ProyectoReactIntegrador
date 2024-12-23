@@ -5,24 +5,24 @@ export const useForm = () => {
   const [eventForm, setEventForm] = useState({
     nombre: "",
     descripcion: "",
+    fecha: "",
     lugar: "",
     tickets: "",
-    //fecha: "",
-      });
+  });
 
   const handleChange = (e) => {
     setEventForm({ ...eventForm, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async () => {
-    const sendData = await postApi (eventForm);
+    const sendData = await postApi(eventForm);
     console.log({ sendData });
     setEventForm({
-        nombre: "",
-        descripcion: "",
-        lugar: "",
-        tickets: "",
-        // fecha: "",
+      nombre: "",
+      descripcion: "",
+      fecha: "",
+      lugar: "",
+      tickets: "",
     });
   };
 
@@ -33,5 +33,16 @@ export const useForm = () => {
     }));
   };
 
-  return { eventForm, handleChange, handleSubmit, setFieldValue };
+  // Función para resetear el formulario a los valores iniciales
+  const resetForm = () => {
+    setEventForm({
+      nombre: "",
+      descripcion: "",
+      fecha: "",
+      lugar: "",
+      tickets: "",
+    });
+  };
+
+  return { eventForm, handleChange, handleSubmit, setFieldValue, resetForm };
 };

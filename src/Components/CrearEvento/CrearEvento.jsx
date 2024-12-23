@@ -1,14 +1,23 @@
 import { TextField, Button, Container, Grid, Typography, Box } from '@mui/material';
-/*import { DesktopDatePicker} from '@mui/x-date-pickers';
+import { DesktopDatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';*/
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useForm } from '../../Hooks/useForm';
-
+import { useNavigate } from 'react-router-dom';
 
 export const CrearEvento = () => {
-  
+  const { eventForm, handleSubmit, handleChange, setFieldValue, resetForm } = useForm(); // Asegúrate de que useForm tenga un método resetForm
+  const navigate = useNavigate();
 
-  const { eventForm, handleSubmit, handleChange, } = useForm();
+  // Función para manejar el clic del botón Cancelar
+  const handleCancel = () => {
+    navigate('/home');
+  };
+
+  // Función para manejar el clic del botón Limpiar
+  const handleClear = () => {
+    resetForm(); // Resetea el formulario (asegúrate de que useForm tenga este método)
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -28,11 +37,11 @@ export const CrearEvento = () => {
         </Typography>
         <form onSubmit={handleSubmit} style={{ width: '100%' }}>
           <Grid container spacing={2}>
-            {/* Título del Evento */}
+            {/* Nombre del Evento */}
             <Grid item xs={12}>
               <TextField
                 label="Nombre"
-                name='nombre'
+                name="nombre"
                 variant="outlined"
                 fullWidth
                 value={eventForm?.nombre}
@@ -45,7 +54,7 @@ export const CrearEvento = () => {
             <Grid item xs={12}>
               <TextField
                 label="Descripción"
-                name='descripcion'
+                name="descripcion"
                 variant="outlined"
                 fullWidth
                 multiline
@@ -58,7 +67,7 @@ export const CrearEvento = () => {
             <Grid item xs={12}>
               <TextField
                 label="Ubicación"
-                name='lugar'
+                name="lugar"
                 variant="outlined"
                 fullWidth
                 value={eventForm?.lugar}
@@ -70,7 +79,7 @@ export const CrearEvento = () => {
             <Grid item xs={12}>
               <TextField
                 label="Cantidad de Entradas"
-                name='tickets'
+                name="tickets"
                 variant="outlined"
                 fullWidth
                 value={eventForm?.tickets}
@@ -79,29 +88,24 @@ export const CrearEvento = () => {
               />
             </Grid>
 
-            {/* Fecha del Evento 
+            {/* Fecha del Evento */}
             <Grid item xs={12}>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DesktopDatePicker
                   label="Fecha"
                   inputFormat="yyyy/MM/dd"
-                  value={eventForm?.fecha || null} // Si es null, evita errores
+                  value={eventForm?.fecha || null}
                   onChange={(newValue) => setFieldValue('fecha', newValue)}
                   renderInput={(params) => <TextField {...params} fullWidth />}
                   required
                 />
               </LocalizationProvider>
-            </Grid>*/}
+            </Grid>
 
-            {/* Botones de Crear y Cancelar */}
+            {/* Botones de Crear, Limpiar y Cancelar */}
             <Grid container spacing={2} justifyContent="center" style={{ marginTop: '20px' }}>
               <Grid item>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                >
+                <Button type="submit" variant="contained" color="primary" fullWidth>
                   Crear
                 </Button>
               </Grid>
@@ -110,7 +114,24 @@ export const CrearEvento = () => {
                   variant="outlined"
                   color="secondary"
                   fullWidth
-                      >
+                  onClick={handleClear}
+                  style={{
+                    backgroundColor: 'yellow', 
+                    borderColor: 'yellow',
+                  }}
+                  onMouseEnter={(e) => e.target.style.backgroundColor = 'orange'} 
+                  onMouseLeave={(e) => e.target.style.backgroundColor = 'yellow'} 
+                >
+                  Limpiar
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  fullWidth
+                  onClick={handleCancel}
+                >
                   Cancelar
                 </Button>
               </Grid>

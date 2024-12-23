@@ -11,6 +11,7 @@ import { AddEvent } from './Routes/AddEvent/AddEvent';
 export const baseURL = import.meta.env.VITE_BASE_URL;
 export const eventsURL = import.meta.env.VITE_EVENTS;
 export const filters = import.meta.env.VITE_GET_EVENTS_FILTER;
+export const addEventURL = import.meta.env.VITE_ADD_EVENT
 
 
 function App() {
