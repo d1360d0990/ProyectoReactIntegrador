@@ -1,9 +1,8 @@
-.Home{
-display: flex;
-  width: 200px;
-  
-}
 .medio {
-    display: flex;
-    
-  }
+  display: flex;
+  flex-direction: column; /* Asegura disposición vertical */
+  align-items: center;    /* Centra el contenido horizontalmente */
+  justify-content: flex-start; /* Opcional, alinea el contenido arriba */
+  width: 100%;            /* Asegura que el contenedor ocupe todo el ancho */
+  padding: 20px;          /* Espaciado opcional */
+}

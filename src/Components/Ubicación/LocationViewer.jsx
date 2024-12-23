@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import "./Ubicacion.css";
+import "./LocationViewer.css";
 
 const LocationViewer = () => {
   // Coordenadas de una ubicación específica

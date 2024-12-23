@@ -8,11 +8,11 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import PrintIcon from '@mui/icons-material/Print';
-import StickyHeadTable from '../DashboardCenter/StickyHeader';
 import { OutlinedInput } from '@mui/material'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./OrdenData.css"
+import './PageContainerBasic.css'
+
 
 const NAVIGATION = [
     {
@@ -105,10 +105,7 @@ export default function PageContainerBasic(props) {
                             </Button>
                             <Button onClick={handleCreateEventClick} variant="contained" color="primary" sx={{ margin: '5px' }}>CREAR EVENTO</Button>
                         </Grid>
-                        <Grid size={12}>
-                            <StickyHeadTable />
-                        </Grid>
-
+                        
                     </Grid>
                 </PageContainer>
             </Paper>

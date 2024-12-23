@@ -51,7 +51,7 @@ function ResponsiveAppBar() {
     if (page === 'Ubicación') {
       navigate('/location');
     }
-    // Puedes manejar otras páginas aquí si lo necesitas
+    
   };
 
   return (
@@ -63,18 +63,19 @@ function ResponsiveAppBar() {
             variant="h6"
             noWrap
             component="a"
+            onClick={() => navigate('/home')}
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
+              letterSpacing: '.1rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            Gestion Eventos
+            GESTION EVENTOS
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -128,7 +129,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            GESTION EVENTOS
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
