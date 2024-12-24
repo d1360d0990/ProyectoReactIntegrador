@@ -6,17 +6,15 @@ import { useForm } from '../../Hooks/useForm';
 import { useNavigate } from 'react-router-dom';
 
 export const CrearEvento = () => {
-  const { eventForm, handleSubmit, handleChange, setFieldValue, resetForm } = useForm(); // Asegúrate de que useForm tenga un método resetForm
+  const { eventForm, handleSubmit, handleChange, setFieldValue, resetForm } = useForm(); 
   const navigate = useNavigate();
 
-  // Función para manejar el clic del botón Cancelar
   const handleCancel = () => {
     navigate('/home');
   };
 
-  // Función para manejar el clic del botón Limpiar
   const handleClear = () => {
-    resetForm(); // Resetea el formulario (asegúrate de que useForm tenga este método)
+    resetForm();
   };
 
   return (
@@ -37,7 +35,6 @@ export const CrearEvento = () => {
         </Typography>
         <form onSubmit={handleSubmit} style={{ width: '100%' }}>
           <Grid container spacing={2}>
-            {/* Nombre del Evento */}
             <Grid item xs={12}>
               <TextField
                 label="Nombre"
@@ -45,12 +42,10 @@ export const CrearEvento = () => {
                 variant="outlined"
                 fullWidth
                 value={eventForm?.nombre}
-                onChange={(e) => handleChange(e)}
+                onChange={handleChange}
                 required
               />
             </Grid>
-
-            {/* Descripción del Evento */}
             <Grid item xs={12}>
               <TextField
                 label="Descripción"
@@ -60,7 +55,7 @@ export const CrearEvento = () => {
                 multiline
                 rows={4}
                 value={eventForm?.descripcion}
-                onChange={(e) => handleChange(e)}
+                onChange={handleChange}
                 required
               />
             </Grid>
@@ -71,11 +66,10 @@ export const CrearEvento = () => {
                 variant="outlined"
                 fullWidth
                 value={eventForm?.lugar}
-                onChange={(e) => handleChange(e)}
+                onChange={handleChange}
                 required
               />
             </Grid>
-
             <Grid item xs={12}>
               <TextField
                 label="Cantidad de Entradas"
@@ -83,12 +77,10 @@ export const CrearEvento = () => {
                 variant="outlined"
                 fullWidth
                 value={eventForm?.tickets}
-                onChange={(e) => handleChange(e)}
+                onChange={handleChange}
                 required
               />
             </Grid>
-
-            {/* Fecha del Evento */}
             <Grid item xs={12}>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DesktopDatePicker
@@ -101,8 +93,6 @@ export const CrearEvento = () => {
                 />
               </LocalizationProvider>
             </Grid>
-
-            {/* Botones de Crear, Limpiar y Cancelar */}
             <Grid container spacing={2} justifyContent="center" style={{ marginTop: '20px' }}>
               <Grid item>
                 <Button type="submit" variant="contained" color="primary" fullWidth>
@@ -142,3 +132,4 @@ export const CrearEvento = () => {
     </Container>
   );
 };
+

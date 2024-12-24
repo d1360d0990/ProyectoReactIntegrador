@@ -11,19 +11,22 @@ export const useForm = () => {
   });
 
   const handleChange = (e) => {
-    setEventForm({ ...eventForm, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setEventForm((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = async () => {
-    const sendData = await postApi(eventForm);
-    console.log({ sendData });
-    setEventForm({
-      nombre: "",
-      descripcion: "",
-      fecha: "",
-      lugar: "",
-      tickets: "",
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const sendData = await postApi(eventForm);
+      console.log('Respuesta de la API:', sendData);
+      resetForm();
+    } catch (error) {
+      console.error('Error al enviar los datos:', error);
+    }
   };
 
   const setFieldValue = (field, value) => {
@@ -33,7 +36,6 @@ export const useForm = () => {
     }));
   };
 
-  // Función para resetear el formulario a los valores iniciales
   const resetForm = () => {
     setEventForm({
       nombre: "",
@@ -44,5 +46,5 @@ export const useForm = () => {
     });
   };
 
-  return { eventForm, handleChange, handleSubmit, setFieldValue, resetForm };
+  return {eventForm, handleSubmit, handleChange, setFieldValue, resetForm};
 };

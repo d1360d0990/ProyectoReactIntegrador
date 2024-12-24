@@ -40,7 +40,7 @@ export const EventTable = ({ events }) => {
                 <TableCell>{event.descripcion}</TableCell>
                 <TableCell>{event.fecha}</TableCell>
                 <TableCell>{event.lugar}</TableCell>
-                <TableCell>{event.capacidadMaxima}</TableCell>
+                <TableCell>{event.tickets}</TableCell>
               </TableRow>
             ))}
           </TableBody>
