@@ -62,7 +62,7 @@ Este proyecto es una aplicación full-stack construida con React para el fronten
 }
 ```
 
-##Información Importante:
+## Información Importante:
 
 Usuario: Usuario123
 Contraseña: Contraseña123
