@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -13,20 +13,22 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { setAnchorElNav, setAnchorElUser } from '../../slices/uiSlice'; // Ejemplo de acciones
 
 const pages = ['Eventos', 'Calendario', 'Ubicación','Contacto'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+const ResponsiveAppBar = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const anchorElNav = useSelector((state) => state.ui.anchorElNav);
+  const anchorElUser = useSelector((state) => state.ui.anchorElUser);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+  const handleOpenNavMenu = () => {
+    dispatch(setAnchorElNav(null));
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
+  const handleOpenUserMenu = () => {
+    dispatch(setAnchorElUser(null));
   };
 
   const handleCloseNavMenu = () => {
