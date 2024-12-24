@@ -7,10 +7,8 @@
 2. [Tecnologías Utilizadas](#tecnologías-utilizadas)
 3. [Características](#características)
 4. [Requisitos Previos](#Requisitos-Previos)
-5. [Uso](#uso)
-6. [Endpoints de la API](#endpoints-de-la-api)
-7. [Esquema de la Base de Datos](#esquema-de-la-base-de-datos)
-
+5. [Esquema de la Base de Datos](#esquema-de-la-base-de-datos)
+6. [Informacion de Logueo](#Imformacion-de-Logueo)
 
 ---
 
@@ -63,3 +61,8 @@ Este proyecto es una aplicación full-stack construida con React para el fronten
   "maxCapacity": "number"
 }
 ```
+
+##Información Importante:
+
+Usuario: Usuario123
+Contraseña: Contraseña123
